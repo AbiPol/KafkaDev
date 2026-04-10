@@ -1,0 +1,8 @@
+target/
+*.class
+*.log
+.idea/
+*.iml
+.env
+.DS_Store
+AGENTS.md
