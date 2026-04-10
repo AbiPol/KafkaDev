@@ -15,14 +15,14 @@ Proyecto de formación Kafka que implementa una tienda virtual con:
 
 ## Stack Tecnológico
 
-| Componente | Versión |
-|------------|---------|
-| Java | 17 |
-| Spring Boot | 3.x |
-| Apache Kafka | 3.8.0 |
-| Schema Registry | 7.5.0 |
-| Avro | - |
-| Maven | - |
+| Componente      | Versión |
+| --------------- | ------- |
+| Java            | 17      |
+| Spring Boot     | 3.x     |
+| Apache Kafka    | 3.8.0   |
+| Schema Registry | 7.5.0   |
+| Avro            | -       |
+| Maven           | -       |
 
 ---
 
@@ -59,9 +59,9 @@ docker exec -it kafka kafka-topics.sh --describe --topic compras --bootstrap-ser
 
 ### Puntos de Acceso
 
-| Servicio | URL |
-|----------|-----|
-| Kafka UI | <http://localhost:8080> |
+| Servicio        | URL                     |
+| --------------- | ----------------------- |
+| Kafka UI        | <http://localhost:8080> |
 | Schema Registry | <http://localhost:8081> |
 
 ---
@@ -78,18 +78,18 @@ docker exec -it kafka kafka-topics.sh --describe --topic compras --bootstrap-ser
 
 #### Convenciones de Nombres
 
-| Elemento | Convención | Ejemplo |
-|----------|-----------|---------|
-| Clases | PascalCase | `UsuarioService` |
-| Métodos | camelCase | `buscarUsuario` |
-| Variables | camelCase | `nombreUsuario` |
-| Constantes | MAYUSCULAS_SNAKE_CASE | `MAX_REINTENTOS` |
-| Paquetes | minúsculas | `com.tienda.usuarios` |
-| Constantes en enums | MAYUSCULAS_SNAKE_CASE | `ACTIVO` |
+| Elemento            | Convención            | Ejemplo               |
+| ------------------- | --------------------- | --------------------- |
+| Clases              | PascalCase            | `UsuarioService`      |
+| Métodos             | camelCase             | `buscarUsuario`       |
+| Variables           | camelCase             | `nombreUsuario`       |
+| Constantes          | MAYUSCULAS_SNAKE_CASE | `MAX_REINTENTOS`      |
+| Paquetes            | minúsculas            | `com.tienda.usuarios` |
+| Constantes en enums | MAYUSCULAS_SNAKE_CASE | `ACTIVO`              |
 
 #### Organización de Archivos
 
-```
+```text
 src/
 ├── main/
 │   ├── java/com/tienda/<servicio>/
@@ -240,7 +240,7 @@ mvn test jacoco:report
 
 ### Mensajes de Commit
 
-```
+```text
 <tipo>(<alcance>): <descripción>
 
 Tipos: feat, fix, docs, style, refactor, test, chore
@@ -248,7 +248,7 @@ Tipos: feat, fix, docs, style, refactor, test, chore
 
 ### Nombres de Ramas
 
-```
+```text
 feature/usuarios-crud
 fix/correccion-offsets
 hotfix/cupon-duplicado
@@ -261,3 +261,4 @@ hotfix/cupon-duplicado
 - [Spring for Apache Kafka](https://docs.spring.io/spring-kafka/reference/)
 - [Confluent Schema Registry](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serialize-deserialize.html)
 - [Avro Specification](https://avro.apache.org/docs/current/spec.html)
+- [Documentacion/PLAN_EJECUCION.md](Documentacion/PLAN_EJECUCION.md)
