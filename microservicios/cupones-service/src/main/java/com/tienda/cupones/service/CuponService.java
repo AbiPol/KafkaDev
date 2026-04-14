@@ -2,6 +2,9 @@ package com.tienda.cupones.service;
 
 import com.tienda.eventos.Compra;
 import com.tienda.eventos.Cupon;
+
+import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +15,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class CuponService {
 
     private static final Logger log = LoggerFactory.getLogger(CuponService.class);
@@ -23,9 +27,9 @@ public class CuponService {
     @Value("${app.kafka.topic-cupones}")
     private String topicCupones;
 
-    public CuponService(KafkaTemplate<String, Cupon> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
+    // public CuponService(KafkaTemplate<String, Cupon> kafkaTemplate) {
+    // this.kafkaTemplate = kafkaTemplate;
+    // }
 
     public void generarCupon(Compra compra) {
         if (compra.getMonto() > UMBRAL_MONTO) {
