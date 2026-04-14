@@ -87,16 +87,16 @@ kafka-formacion/
 
 ### Fase 2: Schema Registry
 
-- [ ] 2.1 Definir schema Avro para evento de compra
-- [ ] 2.2 Registrar schema en Schema Registry
-- [ ] 2.3 Validar compatibilidad (AVRO)
+- [x] 2.1 Definir schema Avro para evento de compra
+- [x] 2.2 Registrar schema en Schema Registry
+- [x] 2.3 Validar compatibilidad (AVRO)
 
 ### Fase 3: usuarios-service (Productor)
 
-- [ ] 3.1 Crear proyecto Spring Boot
-- [ ] 3.2 Configurar cliente Kafka con Avro
-- [ ] 3.3 Implementar endpoint `/compras`
-- [ ] 3.4 Publicar a topic `compras`
+- [x] 3.1 Crear proyecto Spring Boot
+- [x] 3.2 Configurar cliente Kafka (JSON serializer)
+- [x] 3.3 Implementar endpoint `/compras`
+- [x] 3.4 Publicar a topic `compras`
 
 ### Fase 4: cupones-service (Consumer)
 

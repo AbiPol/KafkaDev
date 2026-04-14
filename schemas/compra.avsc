@@ -1,0 +1,36 @@
+{
+  "type": "record",
+  "name": "Compra",
+  "namespace": "com.tienda.eventos",
+  "doc": "Schema para eventos de compra en la tienda virtual",
+  "fields": [
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "ID único del usuario"
+    },
+    {
+      "name": "username",
+      "type": "string",
+      "doc": "Nombre del usuario"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "Email del usuario"
+    },
+    {
+      "name": "monto",
+      "type": "double",
+      "doc": "Monto de la compra en euros"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Timestamp de la compra en milliseconds"
+    }
+  ]
+}

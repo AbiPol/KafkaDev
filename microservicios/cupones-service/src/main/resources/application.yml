@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: cupones-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: cupones-group
+      auto-offset-reset: earliest
+      properties:
+        schema.registry.url: http://localhost:8081
+        specific.avro.reader: "true"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+
+app:
+  kafka:
+    topic: compras
+    topic-cupones: cupones-enviados
+    group-id: cupones-group
+
+logging:
+  level:
+    com.tienda: DEBUG
+    org.apache.kafka: INFO

@@ -1,0 +1,47 @@
+{
+  "type": "record",
+  "name": "Cupon",
+  "namespace": "com.tienda.eventos",
+  "doc": "Schema para cupones de descuento",
+  "fields": [
+    {
+      "name": "codigo",
+      "type": "string",
+      "doc": "Código único del cupón"
+    },
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "ID del usuario que recibe el cupón"
+    },
+    {
+      "name": "username",
+      "type": "string",
+      "doc": "Nombre del usuario"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "Email del usuario"
+    },
+    {
+      "name": "montoCompra",
+      "type": "double",
+      "doc": "Monto de la compra que generó el cupón"
+    },
+    {
+      "name": "descuento",
+      "type": "double",
+      "default": 50.0,
+      "doc": "Monto de descuento del cupón"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "doc": "Timestamp de generación del cupón"
+    }
+  ]
+}

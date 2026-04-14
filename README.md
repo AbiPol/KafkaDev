@@ -4,7 +4,7 @@ Proyecto de formación sobre mensajería con Apache Kafka mediante una tienda vi
 
 ## Arquitectura
 
-```
+```text
 kafka-formacion/
 ├── docker-compose.yml          # Kafka + Schema Registry + UI
 ├── microservices/
@@ -39,6 +39,7 @@ kafka-formacion/
 ## Cómo empezar
 
 1. Arrancar servicios Kafka:
+
 ```bash
 docker-compose up -d
 ```
