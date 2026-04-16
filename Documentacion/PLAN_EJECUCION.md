@@ -2,7 +2,7 @@
 
 ## 1. Estructura del Proyecto
 
-```
+```mermaid
 kafka-formacion/
 ├── docker-compose.yml          # Kafka + Schema Registry + UI
 ├── microservices/
@@ -16,12 +16,12 @@ kafka-formacion/
 
 ## 2. Componentes a Instalar (Docker Compose)
 
-| Componente | Propósito | Puerto | Estado |
-|------------|-----------|--------|--------|
-| **Kafka** | Broker de mensajes | 9092 | ✅ |
-| **Kafka KRaft** | Metadata (sin Zookeeper) | - | ✅ |
-| **Schema Registry** | Registro de esquemas Avro | 8081 | ✅ |
-| **Kafka UI** | Visualización | 8080 | ✅ |
+| Componente          | Propósito                 | Puerto | Estado |
+|---------------------|---------------------------|--------|--------|
+| **Kafka**           | Broker de mensajes        | 9092   | ✅     |
+| **Kafka KRaft**     | Metadata (sin Zookeeper)  | -      | ✅     |
+| **Schema Registry** | Registro de esquemas Avro | 8081   | ✅     |
+| **Kafka UI**        | Visualización             | 8080   | ✅     |
 
 ---
 
@@ -65,15 +65,15 @@ kafka-formacion/
 
 ## 5. Conceptos Kafka a Practicar
 
-| Concepto | Dónde Practicarlo | Estado |
-|----------|-------------------|--------|
-| **Topics** | `compras`, `cupones-enviados` | ✅ |
-| **Particiones** | 3 particiones para paralelismo | ✅ |
-| **Offsets** | Consumer groups, resetear offsets | ⬜ |
-| **Productor** | Envío asíncrono, acknowledgment | ⬜ |
-| **Consumer** | Grupo de consumidores | ⬜ |
-| **Avro + Schema Registry** | Serialización/deserialización | ⬜ |
-| **Keys** | Particionado por userId | ⬜ |
+| Concepto                   | Dónde Practicarlo                 | Estado |
+|----------------------------|-----------------------------------|--------|
+| **Topics**                 | `compras`, `cupones-enviados`     | ✅     |
+| **Particiones**            | 3 particiones para paralelismo    | ✅     |
+| **Offsets**                | Consumer groups, resetear offsets | ✅     |
+| **Productor**              | Envío asíncrono, acknowledgment   | ✅     |
+| **Consumer**               | Grupo de consumidores             | ✅     |
+| **Avro + Schema Registry** | Serialización/deserialización     | ✅     |
+| **Keys**                   | Particionado por userId           | ✅     |
 
 ---
 
@@ -94,38 +94,52 @@ kafka-formacion/
 ### Fase 3: usuarios-service (Productor)
 
 - [x] 3.1 Crear proyecto Spring Boot
-- [x] 3.2 Configurar cliente Kafka (JSON serializer)
+- [x] 3.2 Configurar cliente Kafka (Avro serializer)
 - [x] 3.3 Implementar endpoint `/compras`
 - [x] 3.4 Publicar a topic `compras`
 
 ### Fase 4: cupones-service (Consumer)
 
-- [ ] 4.1 Crear proyecto Spring Boot
-- [ ] 4.2 Configurar consumer con Avro
-- [ ] 4.3 Implementar listener para compras > 500€
-- [ ] 4.4 Generar cupones (log)
+- [x] 4.1 Crear proyecto Spring Boot
+- [x] 4.2 Configurar consumer con Avro
+- [x] 4.3 Implementar listener para compras > 500€
+- [x] 4.4 Generar cupones (log y envío a Kafka)
 
 ### Fase 5: Testing y Observación
 
-- [ ] 5.1 Enviar compras < 500€ (sin cupón)
-- [ ] 5.2 Enviar compras > 500€ (con cupón)
-- [ ] 5.3 Usar Kafka UI para ver mensajes/particiones
-- [ ] 5.4 Resetear offsets y re-procesar
+- [x] 5.1 Enviar compras < 500€ (sin cupón)
+- [x] 5.2 Enviar compras > 500€ (con cupón)
+- [x] 5.3 Usar Kafka UI para ver mensajes/particiones
+- [x] 5.4 Resetear offsets y re-procesar
 
 ---
 
 ## 7. Recomendaciones Adicionales para Formación
 
-> **Nota:** Las siguientes opciones las añadiremos conforme las vayas aprendiendo.
+| Añadir                   | Beneficio                                    | Estado |
+|--------------------------|----------------------------------------------|--------|
+| **Monitorización**       | Prometheus + Grafana                         | ✅     |
+| **Retry/Error handling** | Manejo de errores y reintentos               | ✅     |
+| **Dead Letter Queue**    | Cola para mensajes que fallan                | ✅     |
+| **Logs estructurados**   | JSON logging                                 | ✅     |
+| **Tests unitarios**      | `@EmbeddedKafka`                             | ✅     |
+| **Postman collection**   | Para probar endpoints                        | ✅     |
 
-| Añadir | Beneficio | Estado |
-|--------|-----------|--------|
-| **Monitorización** | Prometheus + Grafana (pendiente de aprender) | ⬜ |
-| **Retry/Error handling** | Manejo de errores y reintentos | ⬜ |
-| **Dead Letter Queue** | Cola para mensajes que fallan | ⬜ |
-| **Logs estructurados** | JSON logging | ⬜ |
-| **Tests unitarios** | `@EmbeddedKafka` | ⬜ |
-| **Postman collection** | Para probar endpoints | ⬜ |
+---
+
+## 8. Guía de Monitorización (Actuator, Prometheus, Grafana)
+
+Hemos integrado monitorización en los microservicios usando Spring Boot Actuator, extraído las métricas con Prometheus y visualizado con Grafana.
+
+**Pasos para visualizar las métricas:**
+
+1. Levanta la infraestructura con Docker (`docker-compose up -d`).
+2. Arranca los proyectos desde IntelliJ/Eclipse o con `mvn spring-boot:run`. (Usuarios arranca en 8082, Cupones en 8083).
+3. Accede a **Grafana**: [http://localhost:3000](http://localhost:3000) (Usuario: `admin` / Password: `admin`).
+4. Ve al menú `Dashboards` -> `New` -> `Import`.
+5. Introduce el **ID 4701** (Dashboard "JVM (Micrometer)") y haz clic en "Load".
+6. Selecciona "Prometheus" en el desplegable inferior y haz clic en "Import".
+7. Ya puedes ver las métricas en tiempo real de JVM (CPU, memoria, etc.) de los microservicios.
 
 ---
 
